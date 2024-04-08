@@ -1,0 +1,114 @@
+package mods.tesseract.endex.world.biomes;
+
+import java.util.Random;
+
+import mods.tesseract.endex.init.BlockInit;
+import mods.tesseract.endex.world.feature.WorldGenEndPlant;
+import mods.tesseract.endex.world.feature.WorldGenEnderCanopy;
+import mods.tesseract.endex.world.feature.WorldGenSurfacePatch;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.init.Biomes;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.biome.BiomeEndDecorator;
+import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+public class BiomeStygianGrowth extends BiomeEndBase {
+    public static BiomeProperties properties = new BiomeProperties("Stygian Growth");
+    public WorldGenerator endTallGrass = new WorldGenEndPlant(BlockInit.STYGIAN_TALL_GRASS.getDefaultState());
+    public WorldGenerator endGlowGrass = new WorldGenEndPlant(BlockInit.STYGIAN_GLOW.getDefaultState());
+    public WorldGenerator endGrassRemoval = new WorldGenSurfacePatch(END_STONE, END_GRASS, 1);
+    public WorldGenerator endCanopyTree = new WorldGenEnderCanopy(false);
+    public WorldGenerator endLargeLake = new WorldGenLakes(BlockInit.ACID);
+    private static final IBlockState AIR = Blocks.AIR.getDefaultState();
+    private static final IBlockState END_STONE = Blocks.END_STONE.getDefaultState();
+    private static final IBlockState END_GRASS = BlockInit.STYGIAN_GRASS.getDefaultState();
+
+    static {
+        properties.setTemperature(Biomes.SKY.getDefaultTemperature());
+        properties.setRainfall(Biomes.SKY.getRainfall());
+        properties.setRainDisabled();
+    }
+
+    public BiomeStygianGrowth() {
+        super(properties);
+        this.spawnableMonsterList.clear();
+        this.spawnableCreatureList.clear();
+        this.spawnableWaterCreatureList.clear();
+        this.spawnableCaveCreatureList.clear();
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 4, 4));
+        this.topBlock = END_GRASS;
+        this.fillerBlock = END_STONE;
+        this.decorator = new BiomeEndDecorator();
+    }
+
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new BiomeDecoratorEndBiomes();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getSkyColorByTemp(float currentTemperature) {
+        return 0;
+    }
+
+    public void decorate(World world, Random rand, BlockPos pos) {
+        if (rand.nextInt(16) == 0) {
+            int x = rand.nextInt(8) + 16;
+            int z = rand.nextInt(8) + 16;
+            int h = getEndSurfaceHeight(world, pos.add(x, 0, z), 60, 70);
+            if (h > 0)
+                endLargeLake.generate(world, rand, pos.add(x, h - 1, z));
+        }
+
+        for (int x = 0; x < 16; x++) {
+            for (int z = 0; z < 16; z++) {
+                int r = rand.nextInt(100);
+                if (r <= 17) {
+                    int h = getEndSurfaceHeight(world, pos.add(x + 8, 0, z + 8), 52 - rand.nextInt(5), 70);
+                    if (h > 0) {
+                        BlockPos plantPos = pos.add(x + 8, h, z + 8);
+                        if (r == 17)
+                            endGlowGrass.generate(world, rand, plantPos);
+                        else
+                            endTallGrass.generate(world, rand, plantPos);
+                    }
+                }
+            }
+        }
+
+
+        if (rand.nextInt(7) != 0)
+            endGrassRemoval.generate(world, rand, pos.add(8 + rand.nextInt(16), 0, 8 + rand.nextInt(16)));
+
+        if (rand.nextFloat() < 0.2) {
+            BlockPos p = pos.add(16, 0, 16);
+            int h = getEndSurfaceHeight(world, p, 50, 70);
+            if (h > 0) {
+                endCanopyTree.generate(world, rand, p.up(h));
+            }
+        }
+
+        super.decorate(world, rand, pos);
+    }
+
+    private int getEndSurfaceHeight(World world, BlockPos pos, int min, int max) {
+        int maxY = max;
+        int minY = min;
+        int currentY = maxY;
+
+        while (currentY >= minY) {
+            if (!world.isAirBlock(pos.add(0, currentY, 0)))
+                return currentY;
+            currentY--;
+        }
+        return 0;
+    }
+}
