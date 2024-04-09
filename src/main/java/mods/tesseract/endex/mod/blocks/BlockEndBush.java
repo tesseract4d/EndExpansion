@@ -33,12 +33,12 @@ public class BlockEndBush extends BlockBush implements IHasModel {
 
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canSustain(world.getBlockState(pos.down()).getBlock());
+        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && this.canSustain(world.getBlockState(pos.down()).getBlock());
     }
 
     @Override
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
-        return canSustain(world.getBlockState(pos.down()).getBlock());
+        return this.canSustain(world.getBlockState(pos.down()).getBlock());
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

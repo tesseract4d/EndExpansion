@@ -3,6 +3,7 @@ package mods.tesseract.endex;
 import mods.tesseract.endex.handlers.*;
 import mods.tesseract.endex.init.*;
 import mods.tesseract.endex.proxy.CommonProxy;
+import mods.tesseract.endex.utils.DebugCommand;
 import mods.tesseract.endex.world.OreGen;
 import mods.tesseract.endex.world.feature.WorldGenCustomStructures;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -83,6 +85,12 @@ public class EndEx {
         Blocks.FIRE.setFireInfo(BlockInit.WYRMWOOD_LEAVES,30,60);
         Blocks.FIRE.setFireInfo(BlockInit.WYRMWOOD_SAPLING,60,100);
         Blocks.FIRE.setFireInfo(BlockInit.STYGIAN_CREEPER, 15, 100);
+    }
+
+    @Mod.EventHandler
+    public void startServer(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new DebugCommand()); //TODO delete
     }
 }
 

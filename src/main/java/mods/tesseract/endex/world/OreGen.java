@@ -24,9 +24,9 @@ public class OreGen implements IWorldGenerator {
 
     public OreGen() {
         ore_end_essence = new WorldGenMinable(BlockInit.ESSENCE_ORE.getDefaultState(), 9, BlockMatcher.forBlock(Blocks.OBSIDIAN));
-        ore_wolframium = new WorldGenMinable(BlockInit.ORE_WOLFRAMIUM.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.END_STONE));
+        ore_wolframium = new WorldGenMinable(BlockInit.WOLFRAMIUM_ORE.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.END_STONE));
         lormyte = new WorldGenLormyte();
-        end_magma = new WorldGenMinable(BlockInit.BLOCK_END_MAGMA.getDefaultState(), 30, BlockMatcher.forBlock(Blocks.END_STONE));
+        end_magma = new WorldGenMinable(BlockInit.END_MAGMA.getDefaultState(), 30, BlockMatcher.forBlock(Blocks.END_STONE));
         end_entropy = new WorldGenMinable(BlockInit.END_DUST.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.END_STONE));
 
     }

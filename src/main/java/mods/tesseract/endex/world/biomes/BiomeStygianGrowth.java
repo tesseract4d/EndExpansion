@@ -21,7 +21,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeStygianGrowth extends BiomeEndBase {
-    public static BiomeProperties properties = new BiomeProperties("Stygian Growth");
     public WorldGenerator endTallGrass = new WorldGenEndPlant(BlockInit.STYGIAN_TALL_GRASS.getDefaultState());
     public WorldGenerator endGlowGrass = new WorldGenEndPlant(BlockInit.STYGIAN_GLOW.getDefaultState());
     public WorldGenerator endGrassRemoval = new WorldGenSurfacePatch(END_STONE, END_GRASS, 1);
@@ -31,22 +30,11 @@ public class BiomeStygianGrowth extends BiomeEndBase {
     private static final IBlockState END_STONE = Blocks.END_STONE.getDefaultState();
     private static final IBlockState END_GRASS = BlockInit.STYGIAN_GRASS.getDefaultState();
 
-    static {
-        properties.setTemperature(Biomes.SKY.getDefaultTemperature());
-        properties.setRainfall(Biomes.SKY.getRainfall());
-        properties.setRainDisabled();
-    }
-
-    public BiomeStygianGrowth() {
-        super(properties);
-        this.spawnableMonsterList.clear();
-        this.spawnableCreatureList.clear();
-        this.spawnableWaterCreatureList.clear();
-        this.spawnableCaveCreatureList.clear();
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 4, 4));
-        this.topBlock = END_GRASS;
-        this.fillerBlock = END_STONE;
-        this.decorator = new BiomeEndDecorator();
+    public BiomeStygianGrowth(BiomeProperties p) {
+        super(p);
+        topBlock = END_GRASS;
+        fillerBlock = END_STONE;
+        decorator = new BiomeEndDecorator();
     }
 
     @Override
@@ -99,16 +87,4 @@ public class BiomeStygianGrowth extends BiomeEndBase {
         super.decorate(world, rand, pos);
     }
 
-    private int getEndSurfaceHeight(World world, BlockPos pos, int min, int max) {
-        int maxY = max;
-        int minY = min;
-        int currentY = maxY;
-
-        while (currentY >= minY) {
-            if (!world.isAirBlock(pos.add(0, currentY, 0)))
-                return currentY;
-            currentY--;
-        }
-        return 0;
-    }
 }

@@ -74,7 +74,7 @@ public final class EndForge
     }
     private static boolean handleForgerE(World world, BlockPos pos, EntityPlayer player, ItemStack stack, EnumHand hand) {
         if (!world.isRemote) {
-            EndHelper.dropItemInWorldExact(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, new ItemStack(BlockInit.BLOCK_END_MAGMA, 1));
+            EndHelper.dropItemInWorldExact(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, new ItemStack(BlockInit.END_MAGMA, 1));
             player.setHeldItem(hand, EndHelper.consumeItem(player, stack));
             world.playSound(null, pos, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }

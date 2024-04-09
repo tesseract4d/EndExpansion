@@ -17,7 +17,7 @@ public class BlockInit {
 
     public static final Material END_FORGE = (new Material(MapColor.STONE));
 
-    public static final Block BLOCK_ENDORIUM = new BlockEndBase("endorium_block", Material.IRON);
+    public static final Block ENDORIUM_BLOCK = new BlockEndBase("endorium_block", Material.IRON);
     public static final Block END_STONE_SMOOTH = new BlockEndBase("end_stone_smooth", Material.ROCK);
     public static final Block END_STONE_PILLAR = new BlockPillar("end_stone_pillar", Material.ROCK);
     public static final Block PURPUR_LAMP = new LampBase("purpur_lamp", Material.ROCK);
@@ -29,23 +29,15 @@ public class BlockInit {
     public static final Block END_GRAVEL = new BlockEndSand("end_gravel", Material.SAND);
     public static final Block LORMYTE_CRYSTAL = new BlockEndBase("lormyte_crystal_block", Material.ROCK);
     public static final Block SMOOTH_LORMYTE = new BlockEndBase("smooth_lormyte", Material.ROCK);
-    public static final Block BLOCK_WOLFRAMIUM = new BlockEndBase("wolframium_block", Material.IRON);
-    public static final Block ORE_WOLFRAMIUM = new BlockWolframiumOre("wolframium_ore", Material.ROCK);
+    public static final Block WOLFRAMIUM_BLOCK = new BlockEndBase("wolframium_block", Material.IRON);
+    public static final Block WOLFRAMIUM_ORE = new BlockWolframiumOre("wolframium_ore", Material.ROCK);
     public static final Block BLOCK_RUNE = new BlockRune("rune_block", Material.ROCK);
-    public static final Block BLOCK_END_MAGMA = new BlockEndMagma("end_magma");
-    public static final Block BLOCK_END_FORGE = new BlockEndForge("end_forge");
+    public static final Block END_MAGMA = new BlockEndMagma("end_magma");
+    public static final Block END_FORGE1 = new BlockEndForge("end_forge");
     public static final Block DRAGON_ESSENCE = new BlockDragonEssence("dragon_essence");
     public static final Block BLOCK_E_USER = new BlockEntropyUser("entropy_user");
-    public static final Block BROKEN_FLOWER = new BlockEndBush("ender_flower") {
-        @Override
-        public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-            return null;
-        }
-
-        public Block.EnumOffsetType getOffsetType() {
-            return Block.EnumOffsetType.XYZ;
-        }
-    };
+    public static final Block BROKEN_FLOWER = new BlockEndCoral("ender_flower");
+    public static final Block END_CORAL = new BlockEndCoral("end_coral");
     public static final Block END_STONE_CHISELED = new BlockEndBase("chiseled_end_bricks", Material.ROCK);
     public static final Block COLD_FIRE = new BlockColdFire("end_fire");
 
@@ -69,5 +61,6 @@ public class BlockInit {
     public static final Block STYGIAN_CREEPER = new BlockEndVine("stygian_creeper").setHardness(0.2f);
     public static final Block STYGIAN_TALL_GRASS = new BlockEndTallGrass("stygian_tall_grass");
     public static final Block STYGIAN_GLOW = new BlockEndBush("stygian_glow").setLightLevel(5);
+    public static final Block FIRETHORN = new BlockEndCactus("firethorn");
     public static Block ACID;
 }

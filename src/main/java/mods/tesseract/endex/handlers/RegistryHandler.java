@@ -9,6 +9,7 @@ import mods.tesseract.endex.init.FluidInit;
 import mods.tesseract.endex.init.ItemInit;
 import mods.tesseract.endex.utils.IHasModel;
 import net.minecraft.block.Block;
+import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -40,6 +41,9 @@ public class RegistryHandler {
     @SubscribeEvent
     static void onEndBiomeRegister(NetherAPIRegistryEvent.End event) {
         event.registry.registerBiome(BiomeInit.STYGIAN_GROWTH, 100);
+        event.registry.registerBiome(BiomeInit.END_DESERT, 100);
+        event.registry.registerBiome(BiomeInit.OUTER, 200);
+        //event.registry.removeBiome(Biomes.SKY);
     }
 
     @SubscribeEvent

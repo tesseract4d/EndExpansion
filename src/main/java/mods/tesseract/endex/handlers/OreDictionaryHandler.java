@@ -10,7 +10,7 @@ public class OreDictionaryHandler {
     	OreDictionary.registerOre("ingotEndorium", ItemInit.INGOT_ENDORIUM);
         OreDictionary.registerOre("ingotTungsten", ItemInit.INGOT_WOLFRAMIUM);
         OreDictionary.registerOre("nuggetTungsten", ItemInit.NUGGET_WOLFRAMIUM);
-        OreDictionary.registerOre("oreTungsten", BlockInit.ORE_WOLFRAMIUM);
+        OreDictionary.registerOre("oreTungsten", BlockInit.WOLFRAMIUM_ORE);
         OreDictionary.registerOre("dustObsidian", ItemInit.CATALYST);
         OreDictionary.registerOre("shardObsidian", ItemInit.SHARD_OBSIDIAN);
         OreDictionary.registerOre("shardLormyte", ItemInit.LORMYTE_CRYSTAL);

@@ -40,7 +40,6 @@ public class ClientProxy extends CommonProxy
 		ModelBakery.registerItemVariants(item);
 
 		final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(FLUID_MODEL_PATH, fluid.getName());
-		System.out.println(114514);
 		System.out.println(fluid.getName());
 
 		ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);

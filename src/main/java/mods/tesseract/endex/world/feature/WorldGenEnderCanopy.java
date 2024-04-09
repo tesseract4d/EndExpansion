@@ -196,7 +196,6 @@ public class WorldGenEnderCanopy extends WorldGenAbstractTree {
     private void buildTrunk(World world, Random rand, BlockPos center, int height) {
         //int thiccness = 11;
         int trunkCore = 5;
-        int trunkDecoWidth = 7;
         for (int x = -trunkCore; x <= trunkCore; x++) {
             for (int z = -trunkCore; z <= trunkCore; z++) {
                 int colHeight;

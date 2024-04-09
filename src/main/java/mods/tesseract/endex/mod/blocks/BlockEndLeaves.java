@@ -79,11 +79,11 @@ public class BlockEndLeaves extends BlockLeaves implements IHasModel {
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        if (!((Boolean) state.getValue(DECAYABLE)).booleanValue()) {
+        if (!state.getValue(DECAYABLE)) {
             i |= 4;
         }
 
-        if (((Boolean) state.getValue(CHECK_DECAY)).booleanValue()) {
+        if (state.getValue(CHECK_DECAY)) {
             i |= 8;
         }
 
@@ -105,6 +105,5 @@ public class BlockEndLeaves extends BlockLeaves implements IHasModel {
     public void registerModels() {
         ModelLoader.setCustomStateMapper(this, (new StateMap.Builder()).ignore(new IProperty[]{CHECK_DECAY, DECAYABLE}).build());
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-        //EndEx.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
     }
 }

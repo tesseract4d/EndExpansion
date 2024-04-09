@@ -8,6 +8,6 @@ public class RecipesInit
 
 	public static void init() 
 	{
-		GameRegistry.addSmelting(BlockInit.ORE_WOLFRAMIUM, new ItemStack(ItemInit.INGOT_WOLFRAMIUM, 1), 1.5f);
+		GameRegistry.addSmelting(BlockInit.WOLFRAMIUM_ORE, new ItemStack(ItemInit.INGOT_WOLFRAMIUM, 1), 1.5f);
 	}
 }
