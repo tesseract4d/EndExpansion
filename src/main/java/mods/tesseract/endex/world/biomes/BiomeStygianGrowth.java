@@ -3,16 +3,12 @@ package mods.tesseract.endex.world.biomes;
 import java.util.Random;
 
 import mods.tesseract.endex.init.BlockInit;
-import mods.tesseract.endex.world.feature.WorldGenEndPlant;
 import mods.tesseract.endex.world.feature.WorldGenEnderCanopy;
 import mods.tesseract.endex.world.feature.WorldGenSurfacePatch;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeEndDecorator;
 import net.minecraft.world.gen.feature.WorldGenLakes;
@@ -21,11 +17,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeStygianGrowth extends BiomeEndBase {
-    public WorldGenerator endTallGrass = new WorldGenEndPlant(BlockInit.STYGIAN_TALL_GRASS.getDefaultState());
-    public WorldGenerator endGlowGrass = new WorldGenEndPlant(BlockInit.STYGIAN_GLOW.getDefaultState());
     public WorldGenerator endGrassRemoval = new WorldGenSurfacePatch(END_STONE, END_GRASS, 1);
     public WorldGenerator endCanopyTree = new WorldGenEnderCanopy(false);
-    public WorldGenerator endLargeLake = new WorldGenLakes(BlockInit.ACID);
+    public WorldGenerator endLake = new WorldGenLakes(BlockInit.ACID);
     private static final IBlockState AIR = Blocks.AIR.getDefaultState();
     private static final IBlockState END_STONE = Blocks.END_STONE.getDefaultState();
     private static final IBlockState END_GRASS = BlockInit.STYGIAN_GRASS.getDefaultState();
@@ -53,7 +47,7 @@ public class BiomeStygianGrowth extends BiomeEndBase {
             int z = rand.nextInt(8) + 16;
             int h = getEndSurfaceHeight(world, pos.add(x, 0, z), 60, 70);
             if (h > 0)
-                endLargeLake.generate(world, rand, pos.add(x, h - 1, z));
+                endLake.generate(world, rand, pos.add(x, h - 1, z));
         }
 
         for (int x = 0; x < 16; x++) {
@@ -62,11 +56,11 @@ public class BiomeStygianGrowth extends BiomeEndBase {
                 if (r <= 17) {
                     int h = getEndSurfaceHeight(world, pos.add(x + 8, 0, z + 8), 52 - rand.nextInt(5), 70);
                     if (h > 0) {
-                        BlockPos plantPos = pos.add(x + 8, h, z + 8);
+                        BlockPos q = pos.add(x + 8, h + 1, z + 8);
                         if (r == 17)
-                            endGlowGrass.generate(world, rand, plantPos);
+                            world.setBlockState(q, BlockInit.STYGIAN_GLOW.getDefaultState());
                         else
-                            endTallGrass.generate(world, rand, plantPos);
+                            world.setBlockState(q, BlockInit.STYGIAN_TALL_GRASS.getDefaultState());
                     }
                 }
             }

@@ -2,7 +2,6 @@ package mods.tesseract.endex.world.feature;
 
 import mods.tesseract.endex.init.BlockInit;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 

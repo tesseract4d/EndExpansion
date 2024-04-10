@@ -43,6 +43,7 @@ public class RegistryHandler {
         event.registry.registerBiome(BiomeInit.STYGIAN_GROWTH, 100);
         event.registry.registerBiome(BiomeInit.END_DESERT, 100);
         event.registry.registerBiome(BiomeInit.OUTER, 200);
+        event.registry.registerBiome(BiomeInit.CORRUPTION, 50);
         //event.registry.removeBiome(Biomes.SKY);
     }
 

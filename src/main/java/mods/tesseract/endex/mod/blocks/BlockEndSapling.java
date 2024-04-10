@@ -25,26 +25,12 @@ import net.minecraftforge.client.model.ModelLoader;
 
 import java.util.Random;
 
-public class BlockEndSapling extends BlockEndBush implements IGrowable, IHasModel {
+public abstract class BlockEndSapling extends BlockEndBush implements IGrowable, IHasModel {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
 
     public BlockEndSapling(String s) {
         super(s);
         setCreativeTab(EndEx.endertab);
-    }
-
-    public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
-            return;
-        for (int i = -4; i < 5; i++) {
-            for (int j = -4; j < 5; j++) {
-                if (!worldIn.getBlockState(pos.add(i, -1, j)).getMaterial().isSolid()) {
-                    return;
-                }
-            }
-        }
-        WorldGenerator tree = new WorldGenEnderCanopy(true);
-        tree.generate(worldIn, rand, pos.up());
     }
 
     @Override
@@ -73,6 +59,8 @@ public class BlockEndSapling extends BlockEndBush implements IGrowable, IHasMode
             this.generateTree(worldIn, pos, state, rand);
         }
     }
+
+    protected abstract void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand);
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!worldIn.isRemote) {

@@ -17,7 +17,6 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class OreGen implements IWorldGenerator {
     private final WorldGenerator ore_end_essence;
-    private final WorldGenerator lormyte;
     private final WorldGenerator ore_wolframium;
     private final WorldGenerator end_magma;
     private final WorldGenerator end_entropy;
@@ -25,7 +24,6 @@ public class OreGen implements IWorldGenerator {
     public OreGen() {
         ore_end_essence = new WorldGenMinable(BlockInit.ESSENCE_ORE.getDefaultState(), 9, BlockMatcher.forBlock(Blocks.OBSIDIAN));
         ore_wolframium = new WorldGenMinable(BlockInit.WOLFRAMIUM_ORE.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.END_STONE));
-        lormyte = new WorldGenLormyte();
         end_magma = new WorldGenMinable(BlockInit.END_MAGMA.getDefaultState(), 30, BlockMatcher.forBlock(Blocks.END_STONE));
         end_entropy = new WorldGenMinable(BlockInit.END_DUST.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.END_STONE));
 
@@ -41,9 +39,6 @@ public class OreGen implements IWorldGenerator {
             if (ConfigsHandler.GENERAL.decoratorEnd) {
                 runGenerator(end_entropy, world, random, chunkX, chunkZ, 2, 0, 22);
                 surfaceGenerator(end_magma, world, random, chunkX, chunkZ, 64);
-            }
-            if (ConfigsHandler.GENERAL.spawnLormyte) {
-                runLormyteGenerator(lormyte, world, random, chunkX, chunkZ, 1, 35, 52);
             }
             if (ConfigsHandler.GENERAL.spawnWolframiumOre) {
                 runGenerator(ore_wolframium, world, random, chunkX, chunkZ, ConfigsHandler.BALANCE.wolframiumRare, 0, 48);

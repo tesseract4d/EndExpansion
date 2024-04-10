@@ -5,7 +5,6 @@ import mods.tesseract.endex.init.BlockInit;
 import mods.tesseract.endex.mod.blocks.BlockEndTallGrass;
 import mods.tesseract.endex.world.feature.WorldGenDune;
 import mods.tesseract.endex.world.feature.WorldGenEndCactus;
-import mods.tesseract.endex.world.feature.WorldGenEndPlant;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

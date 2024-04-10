@@ -47,7 +47,7 @@ public class BiomeEndBase extends BiomeEnd implements IEndBiome {
         int y = max;
 
         while (y >= min) {
-            if (!world.isAirBlock(pos.add(0, y, 0)))
+            if (!world.isAirBlock(pos.up(y)))
                 return y;
             y--;
         }

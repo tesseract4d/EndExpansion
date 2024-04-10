@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class BlockEndBush extends BlockBush implements IHasModel {
-    public BlockEndBush(String s){
+    public BlockEndBush(String s) {
         super();
         setUnlocalizedName(s);
         setRegistryName(s);
@@ -51,7 +51,7 @@ public class BlockEndBush extends BlockBush implements IHasModel {
     }
 
     public boolean canSustain(Block p) {
-        return p == Blocks.END_STONE || p == BlockInit.STYGIAN_GRASS;
+        return p == Blocks.END_STONE || p == BlockInit.STYGIAN_GRASS || p == BlockInit.CORRUPTED_END_STONE;
     }
 
     @Override
